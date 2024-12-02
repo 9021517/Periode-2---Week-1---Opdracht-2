@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #monvingDiv {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="movingDiv"></div>
+
+    <script>
+        /* 2.2 Waarbij het stopt aan de rechterkant en dan weer naar links gaat over de gehele breedte van het scherm. */
+
+        const movingDiv = document.getElementById('movingDiv');
+
+        const screenWidth = window.innerWidth;
+        const divWidth = 50;
+
+        const spped = 2;
+
+        let moveRight = true;
+
+        function moveDiv(){
+            const currentPositionX = parseInt (movingDiv.style.left) || 0;
+
+            if (currentPositionX <0 || currentPositionX > screenWidth -divWidth) {
+                moveRight = !moveRight;
+            }
+        
+        const newPositionX = currentPositionX + (moveRight ? spped : -spped);
+        movingDiv.style.left = newPositionX + 'px';
+        }
+
+        const intervalId = setInterval (moveDiv, 0.001);
+    </script>
+    
+</body>
+</html>
